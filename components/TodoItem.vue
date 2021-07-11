@@ -1,6 +1,8 @@
 
 <template>
-    <div class="todo-item">
+    <div 
+    :class="{done}"
+    class="todo-item">
 
       <!--  에디트 모드-->
       <div v-if="isEditMode" class="item__inner item--edit">
@@ -111,3 +113,21 @@ export default {
   }
 }
 </script>
+
+
+
+<style scoped>
+  /* scoped 는 현재컴포넌트 내에서만 사용하겠다는 속성*/
+  .todo-item{
+    margin-bottom: 10px;
+  }
+  .item__inner {
+    display: flex;
+  }
+  .item__date {
+    font-size: 13px;
+  }
+  .todo-item.done .item__title {
+    text-decoration: line-through;
+  }
+</style>
