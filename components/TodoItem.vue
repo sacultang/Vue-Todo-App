@@ -26,6 +26,11 @@ export default {
   props: {
     todo: Object
   },
+  data(){
+    return {
+      isEditMode : false
+    }
+  },
   computed:{
     done:{
       get (){
@@ -41,7 +46,13 @@ export default {
                         //1.특정 시간 데이타
       const date = dayjs(this.todo.createdAt)
       const isSame = date.isSame(this.todo.updatedAt)
-      return date.format('YYYY년 MM월 DD일')
+
+      if(isSame){
+        return date.format('YYYY년 MM월 DD일')
+      }else{
+        return `${date.format('YYYY년 MM월 DD일') (edited)}`
+      }
+      
     }
   },
   methods: {
