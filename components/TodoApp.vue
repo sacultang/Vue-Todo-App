@@ -17,6 +17,8 @@ import Low from 'lowdb'
 import LocalStorage from 'lowdb/adapters/LocalStorage'
 import cryptoRandomString from 'crypto-random-string'
 import _cloneDeep from 'lodash/cloneDeep'
+import _find from 'lodash/find'
+import _assign from 'lodash/assign'
 import TodoCreator from './TodoCreator.vue'
 import TodoItem from './TodoItem.vue'
 
@@ -64,13 +66,26 @@ export default {
         updatedAt: new Date(),
         done: false
       }
+
+      //Create DB
       this.db
         .get('todos') // lodash에서 제공하는 문법
         .push(newTodo) // ``
-        .write()
+        .write() //lowdb
+
+      //Create Client
+      this.todos.push(newTodo)
     },
-    updateTodo (){
-      console.log('update')
+    updateTodo (todo , value){
+      this.db
+      .get('todos')
+      .find({id:todo.id})
+      .assign(value)
+      .write()
+
+      const foundTodo = _find(this.todos,{id:todo.id})
+     //Object.assign(foundTodo, value) 자바 문법
+     _assign(foundTodo,value)
     },
     deleteTodo(){
       console.log('delete')
