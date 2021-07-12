@@ -31,6 +31,11 @@ export default {
 
       this.$emit('create-todo', this.title)
       this.title = ''
+
+      this.$nextTick(() => {
+        var listScroll = document.querySelector('.todo-app__list')
+        listScroll.scrollTo(0,document.body.scrollHeight)
+      })
     }
   }
 }

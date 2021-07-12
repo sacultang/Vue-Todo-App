@@ -12,17 +12,31 @@
             <button :class="{active: filter ==='active'}" @click="changeFilter('active')">해야 할 항목 ({{activeCount}})</button>
             <button :class="{active: filter ==='completed'}" @click="changeFilter('completed')">완료된 항목 ({{completedCount}})</button>
           </div>
-          <div class="actions">
-            <label>
-              <input v-model="allDone" type="checkbox">
-              <span class="icon">
-                <span class="material-icons">
-                done_all
+          <div class="actions clearfix">
+            <div class="float--left">
+              <label>
+                <input v-model="allDone" type="checkbox" >
+                <span class="icon">
+                  <span class="material-icons">
+                  done_all
+                  </span>
                 </span>
-              </span>
-            </label>
+              </label>
+            </div>
             
-            <button @click="clearCompleted">완료된 항목 삭제</button>
+            
+            <div class="up-down-delete float--right">
+              <button class="btn btn--edit">
+                <i @click="scrollToTop" class="material-icons">expand_less</i>
+              </button>
+              <button @click="scrollToBottom" class="btn btn--edit">
+                <i class="material-icons">expand_more</i>
+              </button>
+              <button @click="clearCompleted" class="btn btn--danger">
+                <i class="material-icons">delete_sweep</i>
+              </button>
+            </div>
+            
           </div>
         </div>
 
@@ -55,8 +69,10 @@ import _assign from 'lodash/assign'
 // import _remove from 'lodash/remove'
 import _forEachRight from 'lodash/forEachRight'
 import _findIndex from 'lodash/findIndex'
-import TodoCreator from './TodoCreator.vue'
-import TodoItem from './TodoItem.vue'
+import scrollTo from 'scroll-to'
+import TodoCreator from '~/components/TodoCreator.vue'
+import TodoItem from '~/components/TodoItem.vue'
+
 
 export default {
   components: {
@@ -214,6 +230,30 @@ export default {
         }
       })
     
+    },
+    scrollToTop(){
+      let docElem = document.querySelector('.todo-app__list')
+      //console.log('click')
+      docElem.scrollTo(0,0,{
+        duration:5000,
+        ease:'linear'
+      })
+    },
+    
+    // scrollToTop(){
+    //   let docElem = document.documentElement
+    //   let docScrollTop = docElem.scrollTop
+    //   //docScrollTop = 0;
+      
+    // },
+    scrollToBottom(){
+      let docElem = document.querySelector('.todo-app__list')
+      
+      //console.log(bodyHeight)
+      docElem.scrollTo(0,docElem.scrollHeight,{
+        duration:1000,
+        ease:'linear'
+      })
     }
   }
 }

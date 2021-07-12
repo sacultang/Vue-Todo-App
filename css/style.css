@@ -13,17 +13,16 @@ html {
     font-size: 20px;
   }
 body {
-    margin: 0;
-    padding: 0;
     height: 100vh;
     background: radial-gradient(#e7fffb, #82ffe8);
     color: var(--color__font--default);
     font-family: 'Noto Sans KR', sans-serif;
+    box-sizing: border-box;
 }
 input:focus{
     outline: none;
 }
-input:focus::placeholder{
+.creator-wrap input:focus::placeholder{
     outline: none;
     color:transparent
 }
@@ -33,7 +32,7 @@ input:focus::placeholder{
 
 /* Todo creator */
 .creator-wrap {
-    margin-top: 30px;
+    
     margin-bottom: 30px;
     height: 50px;
     background-color: white;
@@ -48,7 +47,9 @@ input:focus::placeholder{
     border: none;
     box-sizing: border-box;
     width: 70%;
-    
+}
+.creator-wrap input::placeholder{
+    color:#ccc
 }
 .creator-wrap button {
     width: 10%;
@@ -67,15 +68,21 @@ input:focus::placeholder{
 .todo-app {
     width: 700px;
     margin: 0 auto;
+    padding-top: 30px;
 }
 .todo-app__list {
     background-color: white;
     padding: 0 10px;
+    overflow-y: scroll;
+    height: 50vh;
 }
 
 .todo-item {
     border-bottom: 1px solid #ccc;
     padding: 0 20px;
+}
+.todo-item:last-child{
+    border: none;
 }
 .todo-item:hover{
     background: #72ffb41f;
@@ -125,7 +132,7 @@ input:focus::placeholder{
     display: flex;
 }
 
-.item__inner .btn {
+.btn {
     border: none;
     border-radius: 5px;
     background: #70ca9a;
@@ -136,13 +143,13 @@ input:focus::placeholder{
     align-items: center;
     margin-left: 5px;
 }
-.item__inner .btn:hover{
+.btn--edit:hover{
     background: #19854b;
 }
-.item__inner .btn--danger{
+.btn--danger{
     background: rgb(255, 121, 80);
 }
-.item__inner .btn--danger:hover {
+.btn--danger:hover {
     background: rgb(204, 64, 21);
 }
 
@@ -177,18 +184,20 @@ label .icon {
     justify-content: space-between;
 }
 .todo-app__actions .filters button {
-    background-color: rgb(138, 255, 200);
+    background-color: rgb(186, 226, 208);
     border: none;
     width: calc(100% / 3);
     height: 50px;
+    color: rgb(115, 128, 121);
+    font-size: 17px;
 }
 .todo-app__actions .filters button.active {
     background-color: #0f753f;
     color: white;
 }
 .todo-app__actions .filters button:nth-child(2){
-    border-left: 1px solid #31b971;
-    border-right: 1px solid #31b971;
+    border-left: 1px solid #8bcaa8;
+    border-right: 1px solid #8bcaa8;
 }
 
 .todo-app__actions {
@@ -200,4 +209,31 @@ label .icon {
     display: flex;
     justify-content: space-between;
     padding: 30px 30px;
+}
+.up-down-delete {
+    display: flex;
+}
+
+/* // HOME */
+section.home,
+section.about {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;}
+h1,h2 {
+    font-size: 50px;
+    font-weight: 700;
+    color: rgb(2, 42, 27);
+    margin-bottom: 20px;
+}
+h2 {
+    font-size: 28px;
+}
+
+section.home h2:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
