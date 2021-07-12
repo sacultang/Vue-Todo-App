@@ -1,6 +1,11 @@
 <template>
+
     <div class="todo-app">
 
+        <!-- Todo Creator-->
+        <todo-creator class="todo-app_creator" @create-todo="createTodo"/>
+
+        <!-- filter Box -->
         <div class="todo-app__actions">
           <div class="filters">
             <button :class="{active: filter ==='all'}" @click="changeFilter('all')">모든항목 ({{total}})</button>
@@ -8,11 +13,20 @@
             <button :class="{active: filter ==='completed'}" @click="changeFilter('completed')">완료된 항목 ({{completedCount}})</button>
           </div>
           <div class="actions">
-            <input v-model="allDone" type="checkbox">
+            <label>
+              <input v-model="allDone" type="checkbox">
+              <span class="icon">
+                <span class="material-icons">
+                done_all
+                </span>
+              </span>
+            </label>
+            
             <button @click="clearCompleted">완료된 항목 삭제</button>
           </div>
         </div>
 
+        <!-- Todo List(TodoItem) -->
         <div class="todo-app__list">
           <todo-item
           v-for="todo in filteredTodos"
@@ -22,9 +36,13 @@
           @delete-todo="deleteTodo"
           />
         </div>
-        <hr>
-        <!-- <todo-item></todo-item> -->
-        <todo-creator class="todo-app_creator" @create-todo="createTodo"/>
+        
+
+        
+
+        
+        
+       
     </div>
 </template>
 <script>
@@ -202,5 +220,5 @@ export default {
 </script>
 
 <style>
-  @import "../css/_style.css"
+  @import "../css/style.css"
 </style>

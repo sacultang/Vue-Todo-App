@@ -17,14 +17,25 @@
 
         <!--  버튼 -->
         <div class="item__actions">
-          <button key="complete" @click="editedTodo">완료</button>
-          <button key="cancel" @click="offEditMode">취소</button>
+          <button class="btn btn_done" key="complete" @click="editedTodo">
+            <span class="material-icons">done</span>
+          </button>
+          <button class="btn btn_cancel" key="cancel" @click="offEditMode">
+            <span class="material-icons">
+            clear
+            </span>
+          </button>
         </div>
       </div>
       
       <!-- 노말 모드 -->
       <div v-else class="item__inner item--normal">
-        <input v-model="done" type="checkbox">
+        <label>
+          <input v-model="done" type="checkbox">
+          <span class="icon"><i class="material-icons">check</i></span>
+        </label>
+        
+        
         <div class="item__title-wrap">
           <div class="item__title">
             {{todo.title}}
@@ -36,8 +47,16 @@
 
         <!--  버튼 -->
         <div class="item__actions">
-          <button key="update" @click="onEditMode">수정</button>
-          <button key="delete" @click="deleteTodo">삭제</button>
+          <button class="btn btn--edit" key="update" @click="onEditMode">
+            <span class="material-icons">
+            edit
+            </span>
+          </button>
+          <button class="btn btn--danger" key="delete" @click="deleteTodo">
+            <span class="material-icons">
+            delete
+            </span>
+          </button>
         </div>
       </div>
     </div>
@@ -117,7 +136,7 @@ export default {
 
 
 <style scoped>
-  /* scoped 는 현재컴포넌트 내에서만 사용하겠다는 속성*/
+  /* scoped 는 현재컴포넌트 내에서만 사용하겠다는 속성
   .todo-item{
     margin-bottom: 10px;
   }
@@ -130,4 +149,5 @@ export default {
   .todo-item.done .item__title {
     text-decoration: line-through;
   }
+  */
 </style>

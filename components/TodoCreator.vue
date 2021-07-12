@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <button @click="createTodo">추가</button>
+    <div class="creator-wrap">
+        
         <input
             :value="title"
             :placeholder="placeholder"
@@ -8,6 +8,7 @@
             @input="title = $event.target.value"
             @keypress.enter="createTodo"
         />
+        <button @click="createTodo">Add</button>
     </div>
 </template>
 <script>
