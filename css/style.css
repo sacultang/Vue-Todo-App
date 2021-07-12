@@ -184,11 +184,11 @@ label .icon {
     justify-content: space-between;
 }
 .todo-app__actions .filters button {
-    background-color: rgb(186, 226, 208);
+    /* background-color: rgb(186, 226, 208); */
     border: none;
     width: calc(100% / 3);
     height: 50px;
-    color: rgb(115, 128, 121);
+    color: rgb(150, 160, 154);
     font-size: 17px;
 }
 .todo-app__actions .filters button.active {
@@ -236,4 +236,22 @@ h2 {
 section.home h2:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+.to-home {
+    position: absolute;
+    background-color: #29d077;
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    text-decoration: none;
+    margin: 20px 20px;
+}
+.to-home:hover{
+    background-color: rgb(71, 99, 84);
+    color: white;
 }

@@ -8,9 +8,12 @@
         <!-- filter Box -->
         <div class="todo-app__actions">
           <div class="filters">
-            <button :class="{active: filter ==='all'}" @click="changeFilter('all')">모든항목 ({{total}})</button>
-            <button :class="{active: filter ==='active'}" @click="changeFilter('active')">해야 할 항목 ({{activeCount}})</button>
-            <button :class="{active: filter ==='completed'}" @click="changeFilter('completed')">완료된 항목 ({{completedCount}})</button>
+            <!-- <button :class="{active: filter ==='all'}" @click="changeFilter('all')">모든항목 ({{total}})</button> -->
+            <router-link to="/todos/all" tag="button">모든항목 ({{total}})</router-link>
+            <!-- <button :class="{active: filter ==='active'}" @click="changeFilter('active')">해야 할 항목 ({{activeCount}})</button> -->
+            <router-link to="/todos/active" tag="button">해야 할 항목 ({{activeCount}})</router-link>
+            <!-- <button :class="{active: filter ==='completed'}" @click="changeFilter('completed')">완료된 항목 ({{completedCount}})</button> -->
+            <router-link to="/todos/completed" tag="button">완료된 항목 ({{completedCount}})</router-link>
           </div>
           <div class="actions clearfix">
             <div class="float--left">
@@ -82,15 +85,15 @@ export default {
   data () {
     return {
       db: null,
-      todos: [],
-      filter:'all'
+      todos: []
+      //filter:'all'
     }
   },
 
   //done 체크 여부에 따라 filter 
   computed:{
     filteredTodos() {
-      switch (this.filter) {
+      switch (this.$route.params.id) {
         case 'all' :
         default:
           return this.todos
@@ -188,9 +191,9 @@ export default {
       //$delete() vue에서 제공하는 메소드
       this.$delete(this.todos , foundIdex)
     },
-    changeFilter (filter){
-      this.filter = filter
-    },
+    // changeFilter (filter){
+    //   this.filter = filter
+    // },
     completeAll (checked){
       //DB갱신
       const newTodos = this.db
@@ -235,7 +238,7 @@ export default {
       let docElem = document.querySelector('.todo-app__list')
       //console.log('click')
       docElem.scrollTo(0,0,{
-        duration:5000,
+        duration:300,
         ease:'linear'
       })
     },
@@ -251,7 +254,7 @@ export default {
       
       //console.log(bodyHeight)
       docElem.scrollTo(0,docElem.scrollHeight,{
-        duration:1000,
+        duration:300,
         ease:'linear'
       })
     }
@@ -260,5 +263,10 @@ export default {
 </script>
 
 <style>
-  @import "../css/style.css"
+  @import "../css/style.css";
+
+  .filters button.router-link-active{
+    background: rgb(34, 209, 136);
+    color:white;
+  }
 </style>
