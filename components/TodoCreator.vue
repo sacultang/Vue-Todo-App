@@ -29,7 +29,8 @@ export default {
         return
       }
 
-      this.$emit('create-todo', this.title)
+      // this.$emit('create-todo', this.title)
+      this.$store.dispatch('todoApp/createTodo', this.title) //action에 접근할때는 dispatch mutation은 commit
       this.title = ''
 
       this.$nextTick(() => {
